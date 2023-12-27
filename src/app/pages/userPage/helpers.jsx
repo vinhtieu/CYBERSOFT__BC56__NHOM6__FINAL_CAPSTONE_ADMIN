@@ -1,7 +1,7 @@
-import { userService } from "../../../../api/service";
+import { userService } from "../../../api/service";
 
 import toast from "react-hot-toast";
-import store from "../../../../lib/redux/store";
+import store from "../../../lib/redux/store";
 import {
   openDeleteModal,
   openEditModal,
@@ -17,7 +17,7 @@ import {
   closeAddModal,
   setUserToCreate,
   setDataToUpdate,
-} from "../../../../lib/redux/slices/userManagementSlice";
+} from "../../../lib/redux/slices/userManagementSlice";
 import { Menu } from "../../components";
 
 export const normalize = (value) => {

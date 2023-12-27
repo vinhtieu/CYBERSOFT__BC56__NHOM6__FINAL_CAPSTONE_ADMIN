@@ -1,14 +1,14 @@
-import { STATUS } from "../../../lib/constants";
+import { STATUS } from "../../lib/redux/constants";
 
-import store from "../../../lib/redux/store";
+import store from "../../lib/redux/store";
 
 import {
   saveAccount,
   setAccount,
   setLogin,
   setStatus,
-} from "../../../lib/redux/slices/loginSlice";
-import { userService } from "../../../api/service";
+} from "../../lib/redux/slices/loginSlice";
+import { userService } from "../../api/service";
 import toast from "react-hot-toast";
 
 export const handleLogin = (account, isRemember) => {

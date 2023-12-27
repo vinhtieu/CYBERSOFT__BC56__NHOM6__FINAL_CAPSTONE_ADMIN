@@ -25,10 +25,10 @@ import {
   renderEditForm,
 } from "./helpers";
 import "./style.css";
-import { setIsOnLoad } from "../../../../lib/redux/slices/userManagementSlice";
-import { STATUS } from "../../../../lib/constants";
+import { setIsOnLoad } from "../../../lib/redux/slices/userManagementSlice";
+import { STATUS } from "../../../lib/redux/constants";
 
-export default function User() {
+export default function UserPage() {
   // Table
   const tableStatus = useSelector((state) => state.userManagement.table.status);
   const searchKey = useSelector(

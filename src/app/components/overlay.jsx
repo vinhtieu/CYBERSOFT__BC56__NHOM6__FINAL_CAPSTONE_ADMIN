@@ -1,5 +1,5 @@
 import React from "react";
-import { closeSidebar } from "../../../lib/redux/slices/sidebarSlice";
+import { closeSidebar } from "../../lib/redux/slices/sidebarSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function overlay() {

@@ -1,2 +1,2 @@
-export { default as User } from "./user";
-export { default as QuanLyKhoaHoc } from "./quanLyKhoaHoc";
+export { default as CoursePage } from "./coursePage";
+export { default as UserPage } from "./userPage";

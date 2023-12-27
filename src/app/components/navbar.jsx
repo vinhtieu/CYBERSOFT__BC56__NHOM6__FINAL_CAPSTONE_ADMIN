@@ -1,8 +1,8 @@
 import React from "react";
 import { Bars4Icon } from "@heroicons/react/24/solid";
-import { toggleSidebar } from "../../../lib/redux/slices/sidebarSlice";
+import { toggleSidebar } from "../../lib/redux/slices/sidebarSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { MODE } from "../../../lib/constants/constants";
+import { MODE } from "../../lib/redux/constants";
 
 export default function Navbar() {
   const sidebarMode = useSelector((state) => state.sidebar.mode);

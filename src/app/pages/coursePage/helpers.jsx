@@ -1,5 +1,5 @@
-import { courseService } from "../../../../api/service";
-import { STATUS } from "../../../../lib/constants";
+import { courseService } from "../../../api/service";
+import { STATUS } from "../../../lib/redux/constants";
 import {
   openEditModal,
   setCourseToDelete,
@@ -22,9 +22,9 @@ import {
   openDeleteTraineeModal,
   closeDeleteTraineeModal,
   setWaitList,
-} from "../../../../lib/redux/slices/courseManagementSlice";
+} from "../../../lib/redux/slices/courseManagementSlice";
 // import { setCourseTableDataStatus } from "../../../../lib/redux/slices/statusSlice";
-import store from "../../../../lib/redux/store";
+import store from "../../../lib/redux/store";
 import { ImageUploader, Menu } from "../../components";
 import toast from "react-hot-toast";
 import moment from "moment/moment";

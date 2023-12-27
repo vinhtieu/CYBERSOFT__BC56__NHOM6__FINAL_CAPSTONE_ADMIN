@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Sidebar, Overlay, Navbar } from "../components";
 import { Outlet } from "react-router";
 import { useDispatch } from "react-redux";
-import { MODE } from "../../../lib/constants/constants";
-import { setMode } from "../../../lib/redux/slices/sidebarSlice";
+import { MODE } from "../../lib/redux/constants";
+import { setMode } from "../../lib/redux/slices/sidebarSlice";
 
 export default function MobileLayout() {
   const dispatch = useDispatch();

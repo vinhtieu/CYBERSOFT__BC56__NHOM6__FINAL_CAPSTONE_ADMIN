@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { MODE } from "../../constants/constants";
+import { MODE } from "../constants";
 const sidebarMode = JSON.parse(sessionStorage.getItem("screenMode"));
 const section = JSON.parse(sessionStorage.getItem("activeSection"));
 const initialState = {

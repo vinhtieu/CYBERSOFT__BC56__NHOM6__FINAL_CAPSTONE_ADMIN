@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Sidebar } from "../components";
 import { Outlet } from "react-router";
-import { setMode } from "../../../lib/redux/slices/sidebarSlice";
+import { setMode } from "../../lib/redux/slices/sidebarSlice";
 import { useDispatch } from "react-redux";
-import { MODE } from "../../../lib/constants";
+import { MODE } from "../../lib/redux/constants";
 
 export default function DesktopLayout() {
   const dispatch = useDispatch();

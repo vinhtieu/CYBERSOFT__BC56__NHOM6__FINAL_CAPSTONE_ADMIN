@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { STATUS } from "../../constants/constants";
+import { STATUS } from "../constants";
 
 const initialState = {
   table: {

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { STATUS } from "../../constants";
+// import { STATUS } from "../../constants";
 const data = JSON.parse(localStorage.getItem("loginAccount"));
 const initialState = {
   isLogin: data?.isLogin ? true : false,

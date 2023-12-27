@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Table from "./table";
 import { useDispatch, useSelector } from "react-redux";
-import { STATUS } from "../../../../lib/constants/constants";
+import { STATUS } from "../../../lib/redux/constants";
 import {
   handleCloseModal,
   handleDeleteCourse,
@@ -21,10 +21,10 @@ import {
 import { Button, DeleteModal } from "../../components";
 import ReactModal from "react-modal";
 import { XCircleIcon } from "@heroicons/react/24/solid";
-import { setIsOnLoad } from "../../../../lib/redux/slices/courseManagementSlice";
+import { setIsOnLoad } from "../../../lib/redux/slices/courseManagementSlice";
 import { Tabs } from "antd";
 
-export default function QuanLyKhoaHoc() {
+export default function CoursePage() {
   // const courseTableStatus = useSelector((state) => state.status.courseTable);
   const dispatch = useDispatch();
 

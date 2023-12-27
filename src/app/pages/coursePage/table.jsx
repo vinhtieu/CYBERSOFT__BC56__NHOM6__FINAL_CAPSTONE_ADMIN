@@ -3,29 +3,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import { Pagination } from "antd";
 import Button from "../../components/button";
-import SearchBar from "../../components/searchBar";
-import { MODE, STATUS } from "../../../../lib/constants/constants";
-import { handleEditUser, handleOpenDeleteModal } from "./helpers";
+import { SearchBar } from "../../components";
+import { MODE, STATUS } from "../../../lib/redux/constants";
 import {
   openAddModal,
-  setActivePage,
-  setPageTurned,
   setPrevPage,
+  setActivePage,
   setSearchKey,
   setTableStatus,
   updateURL,
-} from "../../../../lib/redux/slices/userManagementSlice";
+  setPageTurned,
+} from "../../../lib/redux/slices/courseManagementSlice";
+import {
+  handleGetTrainee,
+  handleGetWaitList,
+  handleOpenDeleteModal,
+  handleOpenEditModal,
+} from "./helpers";
 
 export default function Table({ header, body }) {
-  const userTableStatus = useSelector(
-    (state) => state.userManagement.table.status
-  );
+  // const courseTableData = useSelector((state) => state.status.courseTableData);
   const sidebarMode = useSelector((state) => state.sidebar.mode);
   const currentPage = useSelector(
-    (state) => state.userManagement.pagination.activePage
+    (state) => state.courseManagement.pagination.activePage
   );
   const totalItem = useSelector(
-    (state) => state.userManagement.pagination.totalItem
+    (state) => state.courseManagement.pagination.totalItem
+  );
+  const tableStatus = useSelector(
+    (state) => state.courseManagement.table.status
   );
   const dispatch = useDispatch();
 
@@ -47,62 +53,63 @@ export default function Table({ header, body }) {
 
   const renderTableBody = (data) => {
     if (data.length > 0) {
-      return data.map((user, index) => {
+      return data.map((course) => {
         return (
           <tr
-            key={index}
+            key={course.maKhoaHoc}
             className="transition-all border-b border-dashed last:border-b-0 group text-left  hover:bg-[#f5f5f5]">
             <td className="p-3 w-[calc(100%/5)]">
               <div className="flex items-center">
                 <div className="relative inline-block shrink-0 rounded-2xl me-3">
                   <img
-                    src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-47-new.jpg"
+                    src="https://raw.githubcoursecontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-47-new.jpg"
                     className="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl"
                     alt=""
                   />
                 </div>
                 <div className="flex flex-col justify-start">
                   <span className="mb-1  transition-all  ease-in-out  text-[#8f8f90]  group-hover:text-black text-base">
-                    {user?.hoTen.length < 15
-                      ? user?.hoTen
-                      : user?.hoTen.slice(0, 14) + "..."}
+                    {course?.tenKhoaHoc.length < 15
+                      ? course?.tenKhoaHoc
+                      : course?.tenKhoaHoc.slice(0, 14) + "..."}
                   </span>
                 </div>
               </div>
             </td>
+            <td className="p-3 w-[calc(100%/5)]  pl-0 text-left ">
+              <span className="inline-flex items-center p-2 py-3 mr-auto text-base leading-none text-center text-green-500 align-baseline border border-green-500 rounded-lg">
+                {course?.danhMucKhoaHoc?.maDanhMucKhoahoc}
+              </span>
+            </td>
             <td className="p-3 w-[calc(100%/5)]  pl-0 ">
               <span className=" text-[#8f8f90] group-hover:text-black transition-all text-base">
-                {user?.taiKhoan}
+                {course?.luotXem}
               </span>
             </td>
             <td className="p-3 w-[calc(100%/5)]  pl-0 ">
               <span className="inline-flex items-center py-1 mr-auto  text-center align-baseline rounded-lg text-base text-[#8f8f90]  group-hover:text-black transition-all">
-                {user?.email}
+                {course?.soLuongHocVien}
               </span>
             </td>
-            <td className="p-3 w-[calc(100%/5)]  pl-0 text-left ">
-              <span className="inline-flex items-center p-2 py-3 mr-auto text-base leading-none text-center text-green-500 align-baseline border border-green-500 rounded-lg">
-                {user?.tenLoaiNguoiDung}
-              </span>
-            </td>
+
             <td className="p-3 w-[calc(100%/5)]  pl-0 text-left ">
               <span className="text-center text-base align-baseline inline-flex  py-3 mr-auto items-center   leading-none text-[#8f8f90] group-hover:text-black transition-all rounded-lg">
-                {user?.soDT?.length < 10
-                  ? user?.soDT
-                  : user?.soDT?.slice(0, 14) + "..."}
+                {course?.ngayTao}
               </span>
             </td>
             <td className="p-3 space-x-4 text-left min-w-[150px]">
               <Button
                 onClickEvent={() => {
-                  handleOpenDeleteModal(user);
+                  handleOpenDeleteModal(course.maKhoaHoc);
                 }}
                 classNameProps="!h-[40px] !w-[40px] !p-1.5 !mt-0 !border-0 !inline-block">
                 <TrashIcon className="text-red-500" />
               </Button>
               <Button
                 onClickEvent={() => {
-                  handleEditUser(user?.soDT, user?.taiKhoan);
+                  handleOpenEditModal(course.maKhoaHoc);
+                  handleGetTrainee(course.maKhoaHoc);
+                  handleGetWaitList(course.maKhoaHoc);
                 }}
                 classNameProps="!h-[40px] !w-[40px] !p-1.5 !mt-0 !border-0  !inline-block">
                 <PencilSquareIcon className="text-blue-500" />
@@ -126,7 +133,7 @@ export default function Table({ header, body }) {
         className={`p-0 max-[767.98px]:mb-6 mb-4 flex items-center flex-col desktop:flex-row`}>
         <h3
           className={`font-medium p-0 tablet:pl-3 text-2xl tablet:text-3xl mx-auto tablet:mr-auto tablet:ml-0 mb-6 desktop:mb-0`}>
-          User Management
+          Course Management
         </h3>
         <div className="flex flex-col w-full gap-4 px-3 mr-auto tablet:flex-row desktop:w-auto desktop:m-0 ">
           <SearchBar
@@ -140,12 +147,13 @@ export default function Table({ header, body }) {
             onReset={() => {
               dispatch(setTableStatus(STATUS.STAND_BY));
             }}></SearchBar>
+
           <Button
             classNameProps="leading-6 !tablet:leading-8 w-full tablet:w-44 desktop:w-32 "
             onClickEvent={() => {
               dispatch(openAddModal());
             }}>
-            Add User
+            Add Course
           </Button>
         </div>
       </div>
@@ -163,11 +171,13 @@ export default function Table({ header, body }) {
       </div>
       {/* table Container */}
       <div
-        className={`p-3 flex flex-row items-center  max-[939.98px]:justify-center justify-between`}>
+        className={`p-3 flex flex-row items-center  max-[939.98px]:justify-center justify-between ${
+          tableStatus === STATUS.SEARCHING ? "hidden" : "flex"
+        }`}>
         <span className="text-base max-[939.98px]:hidden">{`Total ${totalItem} items`}</span>
         <Pagination
           simple={sidebarMode === MODE.MOBILE ? true : false}
-          disabled={userTableStatus === STATUS.PENDING ? true : false}
+          // disabled={courseTableData === STATUS.PENDING ? true : false}
           total={totalItem}
           current={currentPage}
           pageSize={10}
@@ -177,7 +187,7 @@ export default function Table({ header, body }) {
           rootClassName="text-lg"
           onChange={(page) => {
             dispatch(setPageTurned(true));
-            dispatch(setPrevPage(+page - 1 <= 0 ? "0" : +page - 1));
+            dispatch(setPrevPage(+page - 1 <= 0 ? 0 : +page - 1));
             dispatch(setActivePage(page));
             dispatch(updateURL());
           }}

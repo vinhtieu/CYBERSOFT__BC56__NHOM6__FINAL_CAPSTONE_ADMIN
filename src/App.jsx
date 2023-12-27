@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-import { User, QuanLyKhoaHoc } from "./app/pages";
+// import { UserPage, CoursePage } from "./app/pages";
+import UserPage from "./app/pages/userPage";
+import CoursePage from "./app/pages/coursePage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./app/admin/layout";
+import Layout from "./app/layout";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -11,8 +13,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/admin" element={<Layout />}>
-            <Route path="user" element={<User />} />
-            <Route path="quan-ly-khoa-hoc" element={<QuanLyKhoaHoc />} />
+            <Route path="user" element={<UserPage />} />
+            <Route path="course" element={<CoursePage />} />
           </Route>
         </Routes>
         <Toaster
