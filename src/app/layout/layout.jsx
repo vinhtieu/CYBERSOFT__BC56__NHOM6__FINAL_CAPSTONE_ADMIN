@@ -27,12 +27,12 @@ export default function Layout() {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("loginAccount"));
 
-    if (data && data.isLogin) {
+    if (data && !data.isLogin) {
       const account = { taiKhoan: data.taiKhoan, matKhau: data.matKhau };
       handleAutoLogin(account);
-      navigate("/admin/user");
+      navigate("user");
     }
-  });
+  }, []);
   return isLogin ? (
     <>
       <Desktop>
@@ -46,7 +46,7 @@ export default function Layout() {
     <Login
       action={(account, isRemember) => {
         handleLogin(account, isRemember);
-        navigate("/admin/user");
+        navigate("user");
       }}></Login>
   );
 }
