@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { QuanLyNguoiDung, QuanLyKhoaHoc } from "./app/admin/pages";
+import { User, QuanLyKhoaHoc } from "./app/pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./app/admin/layout";
 import { Toaster } from "react-hot-toast";
@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/admin" element={<Layout />}>
-            <Route path="quan-ly-nguoi-dung" element={<QuanLyNguoiDung />} />
+            <Route path="user" element={<User />} />
             <Route path="quan-ly-khoa-hoc" element={<QuanLyKhoaHoc />} />
           </Route>
         </Routes>
