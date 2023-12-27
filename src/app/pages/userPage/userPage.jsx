@@ -213,7 +213,7 @@ export default function UserPage() {
         onRequestClose={handleCloseModal}
         className="absolute top-1/2 left-1/2 right-auto bottom-auto overflow-auto
         w-[80vw] min-[940px]:w-[50vw] min-[1200px]:w-[40vw] min-[1670px]:w-[30vw]
-        h-auto -mr-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-[4px] p-5 border border-[#cccccc]"
+        h-[80vh] -mr-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-[4px] p-5 border border-[#cccccc]"
         ariaHideApp={false}
         contentLabel="User Edit Modal">
         <div className="flex flex-col h-full">
@@ -269,7 +269,7 @@ export default function UserPage() {
         contentLabel="Example Modal"
         className="absolute top-1/2 left-1/2 right-auto bottom-auto overflow-auto
         w-[80vw] min-[940px]:w-[50vw] min-[1200px]:w-[40vw] min-[1670px]:w-[30vw]
-        h-auto
+        h-[80vh]
         -mr-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-[4px] p-5 border border-[#cccccc]"
         ariaHideApp={false}>
         <div className="flex flex-row items-center justify-between mb-6">
