@@ -189,7 +189,7 @@ export default function Table({ header, body }) {
             dispatch(setPageTurned(true));
             dispatch(setPrevPage(+page - 1 <= 0 ? 0 : +page - 1));
             dispatch(setActivePage(page));
-            dispatch(updateURL());
+            // dispatch(updateURL());
           }}
         />
       </div>

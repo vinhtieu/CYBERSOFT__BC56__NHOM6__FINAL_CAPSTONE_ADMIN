@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { MODE } from "../../lib/redux/constants";
@@ -7,11 +7,21 @@ import { setActiveSection } from "../../lib/redux/slices/sidebarSlice";
 
 export default function Sidebar() {
   const sidebarOpen = useSelector((state) => state.sidebar.isOpen);
-
   const sidebarMode = useSelector((state) => state.sidebar.mode);
   const activeSection = useSelector((state) => state.sidebar.activeSection);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
+
+  useEffect(() => {
+    switch (activeSection) {
+      case "USER":
+        navigateTo("user");
+        break;
+      case "COURSE":
+        navigateTo("course");
+        break;
+    }
+  }, []);
   return (
     <aside
       className={`flex flex-col w-64 max-w-[256px] h-auto overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l transition-all px-5 py-8   ${
